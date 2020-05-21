@@ -14,10 +14,31 @@ router.get('/add', (req, res) => {
 
 });
 
-router.post('/add', (req, res) => {
-    res.send('RECIBIDO');
+router.post('/add', async(req, res) => {
+    //console.log(req.body);  // puedos mostrar en consola  
+    const { title, url, description } = req.body;
+    const newLink = {
+        title,
+        url,
+        description
+    };
+    //pool.query('INSERT INTO links set ?, [newLink]'); //una peticion comun abajo esta con promes
+    await pool.query('INSERT INTO links set ?', [newLink]);
+    console.log(newLink);
+    //res.send('RECIBIDO');
+     res.redirect('/links');
 
 });
+
+router.get('/', async (req, res) => {
+    const links = await pool.query('SELECT * FROM links');
+    console.log(links);
+    //res.send('las listas estan aqui');
+    res.render('links/list', {links});
+});
+
+
+//para el tracker
 
 router.get('/tracker1', (req, res) => {
     //res.send('Form');
