@@ -2,8 +2,52 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card-body">
+                <!-- mapas -->
+                <div id="map" style="height:70vh;">
+                <script>
+
+                    var latPlataforma=-17.383483;
+                    var lonPlataforma=-66.157327;
+                    var azimutPlataforma=35.0;
+
+                    var map = L.map('map',{
+                        fullscreenControl: true,
+                    }).setView([latPlataforma, lonPlataforma], 11);
+
+                    //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    L.tileLayer('http://localhost:4000/mapas2/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap Offline'
+                    }).addTo(map);
+
+                    var allowZooms = [7, 9, 11, 13, 15];
+
+                    map.setView = function(center, zoom, options) {
+                        if ((zoom) && (allowZooms.indexOf(zoom) === -1)) {
+                            var ixCurZoom = allowZooms.indexOf(this._zoom);
+                            var dir = (zoom > this._zoom) ? 1 : -1;
+                            if (allowZooms[ixCurZoom + dir]) {
+                                zoom = allowZooms[ixCurZoom + dir];
+                            } else {
+                                return this;
+                            }
+                        }
+                        return L.Map.prototype.setView.call(this, center, zoom, options);
+                    }
+
+                    
+                    </script>
+
+                </div>
+                <ul></ul>
+                
+                
+                
                 <!-- Para saber donde enviara los datos -->
+
+
+
                 <form action="/links/tracker1" method="POST">
+
                     <div class="form-group">
                         <input type="text" class="form-control" name="titlle" placeholder="UU.SS" autofocus>
                     </div>
