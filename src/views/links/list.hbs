@@ -11,9 +11,16 @@
                         </a>
                         <p class = "m-2">{{description}}</p>
                         <p>{{timeago created_ad}}</p>
-                        <a href="" class="btn btn-danger">Delete Link</a>
-                        <a href="" class="btn btn-secondary">Edit Link</a>
+                        <a href="/links/delete/{{id_links}}" class="btn btn-danger">Delete Link</a>
+                        <a href="/links/edit/{{id_links}}" class="btn btn-secondary">Edit Link</a>
                     </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="vol-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>NO TENEMOS LINKS ALMACENADOS </p>
+                    <a href="/links/add">CREA UNO!!!!</a>
                 </div>
             </div>
         {{/each}}

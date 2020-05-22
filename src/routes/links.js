@@ -37,6 +37,38 @@ router.get('/', async (req, res) => {
     res.render('links/list', {links});
 });
 
+router.get('/delete/:id_links', async (req, res) => {
+    //console.log(req.params.id_links); //para comprobar
+    const { id_links } = req.params;
+    await pool.query('DELETE FROM links WHERE id_links = ?', [id_links]);
+    res.redirect('/links');
+    res.send('DELETED - REEEE');
+});
+
+router.get('/edit/:id_links', async (req, res) => {
+    const { id_links } = req.params;
+    //console.log(id_links);
+    //res.send('Recividisiomo para EDIT');
+    //para poblar la lista
+    const links =  await pool.query('SELECT * FROM links WHERE id_links = ?', [id_links]);
+    //console.log(links[0]);
+    //1:44:30
+    res.render('links/edit', {link: links[0]});
+});
+
+router.post('/edit/:id_links', async(req, res) => {
+    const { id_links } = req.params;
+    const { title, description, url} = req.body;
+    const newLink = {
+        title,
+        description,
+        url
+    };
+    console.log(newLink);
+    await pool.query( 'UPDATE links set ? WHERE id_links = ?', [newLink, id_links]);
+     res.redirect('/links');
+});
+
 
 //para el tracker
 
