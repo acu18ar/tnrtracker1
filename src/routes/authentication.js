@@ -19,13 +19,26 @@ router.get('/signup', (req,res) => {
     res.send('received');
 }); */
 
+router.get('/signin', (req, res) => {
+    res.render('auth/signin');
+});
+
+router.post('/signin', (req, res, next) => {
+    passport.authenticate('local.signin',{
+        successRedirect:'/profile',
+        failureRedirect: '/signin',
+        failureFash: true
+    })(req, res, next);
+});
+
 router.post('/signup', passport.authenticate('local.signup',{
     successRedirect: '/profile',
     failureRedirect: '/signup',
     failureFash: true
 }));
 
+
 router.get('/profile', (req, res) => {
-    res.send('This is your Profile');
+    
 });
 module.exports = router;

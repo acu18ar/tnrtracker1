@@ -8,7 +8,7 @@ const helpers ={};
 // para el cifrado
 helpers.encryptPassword = async(password) => {
     const salt = await bcrypt.genSalt(10);
-    const hash = bcrypt.hash(password, salt);
+    const hash = await bcrypt.hash(password, salt);
     return hash;
 
 };
@@ -16,7 +16,7 @@ helpers.encryptPassword = async(password) => {
 helpers.matchPassword1 = async (password, savedPassword)  =>{
     //await bcrypt.compare(password, savedPassword);
     try{
-        await bcrypt.compare(password, savedPassword);
+        return await bcrypt.compare(password, savedPassword);
     }catch(e){
         console.log(e);
     }
