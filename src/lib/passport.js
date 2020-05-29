@@ -51,7 +51,7 @@ passport.use('local.signup', new LocalStrategy({
     return done(null, newUser);
 }));
 
-
+//para dar lugar al ususario registrado
 passport.serializeUser((user, done)=>{
     done(null, user.id);
 

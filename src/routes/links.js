@@ -3,24 +3,25 @@ const router = express.Router();
 //este pool hace referenia a la base de datos OJO
 //  (../) es para subir dos niveles e ir a database
 const pool =require('../database');
-
+const {isLoggedIn} = require('../lib/auth');
 // para las rutas de las vistas para pedir al servidor
 
 // locahost:4000/links....
-router.get('/add', (req, res) => {
+router.get('/add', isLoggedIn, (req, res) => {
     //res.send('Form');
     //res.render('/links/add');
     res.render('links/add');
 
 });
 
-router.post('/add', async(req, res) => {
+router.post('/add', isLoggedIn, async(req, res) => {
     //console.log(req.body);  // puedos mostrar en consola  
     const { title, url, description } = req.body;
     const newLink = {
         title,
         url,
-        description
+        description,
+        user_id: req.user.id
     };
     //pool.query('INSERT INTO links set ?, [newLink]'); //una peticion comun abajo esta con promes
     await pool.query('INSERT INTO links set ?', [newLink]);
@@ -32,14 +33,14 @@ router.post('/add', async(req, res) => {
 
 });
 
-router.get('/', async (req, res) => {
-    const links = await pool.query('SELECT * FROM links');
+router.get('/', isLoggedIn, async (req, res) => {
+    const links = await pool.query('SELECT * FROM links WHERE user_id=?',[req.user.id]);
     console.log(links);
     //res.send('las listas estan aqui');
     res.render('links/list', {links});
 });
 
-router.get('/delete/:id_links', async (req, res) => {
+router.get('/delete/:id_links',isLoggedIn, async (req, res) => {
     //console.log(req.params.id_links); //para comprobar
     const { id_links } = req.params;
     await pool.query('DELETE FROM links WHERE id_links = ?', [id_links]);
@@ -48,7 +49,7 @@ router.get('/delete/:id_links', async (req, res) => {
     res.send('DELETED - REEEE');
 });
 
-router.get('/edit/:id_links', async (req, res) => {
+router.get('/edit/:id_links', isLoggedIn, async (req, res) => {
     const { id_links } = req.params;
     //console.log(id_links);
     //res.send('Recividisiomo para EDIT');
@@ -59,7 +60,7 @@ router.get('/edit/:id_links', async (req, res) => {
     res.render('links/edit', {link: links[0]});
 });
 
-router.post('/edit/:id_links', async(req, res) => {
+router.post('/edit/:id_links', isLoggedIn, async(req, res) => {
     const { id_links } = req.params;
     const { title, description, url} = req.body;
     const newLink = {

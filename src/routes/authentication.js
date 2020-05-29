@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 // const passport = require('../lib/passport'); //error con las rutas... OJO
 const passport = require('passport');
+const{ isLoggedIn, isNotLoggedin } = require('../lib/auth');
 
 
-router.get('/signup', (req,res) => {
+router.get('/signup', isNotLoggedin, (req,res) => {
     res.render('auth/signup');
 });
 
@@ -38,7 +39,12 @@ router.post('/signup', passport.authenticate('local.signup',{
 }));
 
 
-router.get('/profile', (req, res) => {
-    
+router.get('/profile', isLoggedIn, (req, res) => {
+    res.render('profile');
+});
+
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logOut();
+    res.redirect('/signin');
 });
 module.exports = router;
