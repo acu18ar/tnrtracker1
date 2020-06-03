@@ -1,0 +1,62 @@
+<div class="container p-8">
+<table class="table" class="container p-8">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Codigo Unidad de Superficie</th>
+            <th scope="col">Nombre Unidad de Superficie</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+        </tr>
+     </thead>
+     <tbody>
+        {{#each uuss}}
+        <tr>
+            <td>number</td>
+            <td>{{this.code_uuss}}</td>
+            <td>{{this.name_uuss}}</td>
+            <td>{{this.description}}</td>
+            <td>
+                <a href="/uuss/delete/{{id_uuss}}" class="btn btn-danger">Delete U.S.</a>
+                <a href="/uuss/edit/{{id_uuss}}" class="btn btn-secondary">Edit U.S.</a>
+            </td>
+        </tr>
+        {{/each}}
+     </tbody>
+</table>
+</div>
+
+{{!-- Para UNIDADES DE SUPERFICIE
+<div class="container p-8">
+    <div class="row">
+        {{#each uuss}}
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <a target="_blank">
+                            <h3 class = "card-title text-uppercase" >
+                                {{code_uuss}}
+                            </h3>
+                        </a>
+                        <a target="_blank">
+                            <h3 class = "card-title text-uppercase" >
+                                {{name_uuss}}
+                            </h3>
+                        </a>
+                        <p class = "m-2">{{description}}</p>
+                        <a href="/uuss/delete/{{id_uuss}}" class="btn btn-danger">Delete U.S.</a>
+                        <a href="/uuss/edit/{{id_uuss}}" class="btn btn-secondary">Edit U.S.</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="vol-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>NO TENEMOS UNIDAD DE SUPERFICE ALMACENADA </p>
+                    <a href="/UUSS/add">Ingres Unidad de Superficie</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+ --}}

@@ -20,6 +20,8 @@ router.get('/signup', isNotLoggedin, (req,res) => {
     res.send('received');
 }); */
 
+
+
 router.get('/signin', (req, res) => {
     res.render('auth/signin');
 });
@@ -31,6 +33,7 @@ router.post('/signin', (req, res, next) => {
         failureFash: true
     })(req, res, next);
 });
+
 
 router.post('/signup', passport.authenticate('local.signup',{
     successRedirect: '/profile',
@@ -48,3 +51,24 @@ router.get('/logout', isLoggedIn, (req, res) => {
     res.redirect('/signin');
 });
 module.exports = router;
+/*router.post('/signin', (req, res, next) => {
+    const rows =  pool.query('SELECT * FROM users WHERE username = ?', [username]);
+    if (rows.length > 0){
+        const user = rows[0];
+        // comparar contrasenas
+        //const validPassword = await helpers.matchPassword1(password, user.password);
+        if(user){
+            done (null, user, req.flash('success','WELDONE '+ user.username,authenticate('local.signin',{
+                successRedirect:'/signpass',
+                failureRedirect: '/signin',
+                failureFash: true
+            }))(req, res, next));
+
+        }else{
+            done(null, false, req.flash('message','Incorrect '));
+        }
+    }else{
+        return done(null, false, req.flash('message','Usuario inexistente'));
+    }
+
+});*/

@@ -34,3 +34,17 @@ ALTER TABLE links
 
 ALTER TABLE links
     MODIFY id_links INT(11) NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE uuss(
+    id_uuss INT(45) NOT NULL,
+    code_uuss VARCHAR(45) NOT NULL,
+    name_uuss VARCHAR(45) NOT NULL,
+    description TEXT,
+    user_id INT(11),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+ALTER TABLE uuss
+    ADD PRIMARY KEY (id_uuss);
+
+ALTER TABLE uuss
+    MODIFY id_uuss INT(45) NOT NULL AUTO_INCREMENT;
