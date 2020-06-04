@@ -55,6 +55,9 @@ app.use(((req, res, next)=>{
     app.locals.success = req.flash('success');
     app.locals.message = req.flash('message');
     app.locals.user = req.user;
+   // app.locals.title = req.title;//para el cargo
+    app.locals.uuss = req.uuss;//para uuss
+    app.locals.tracker = req.tracker;//para rastreador
     next();
 }));
 
@@ -63,6 +66,9 @@ app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/links', require('./routes/links'));
 app.use('/uuss', require('./routes/uuss'));
+/*app.use('/title', require('./routes/title'));
+app.use('/trackers', require('./routes/trackers'));
+app.use('/crew', require('./routes/crew'));*/
 
 //publics
 app.use(express.static(path.join(__dirname, 'public')));

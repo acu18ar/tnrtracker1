@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const pool =require('../database');
+
 // const passport = require('../lib/passport'); //error con las rutas... OJO
 const passport = require('passport');
 const{ isLoggedIn, isNotLoggedin } = require('../lib/auth');
 
 
-router.get('/signup', isNotLoggedin, (req,res) => {
-    res.render('auth/signup');
+router.get('/signup', isNotLoggedin, async (req,res) => {
+    const titles = await pool.query('SELECT * FROM title'); //WHERE user_id=?',[req.user.id]
+    res.render('auth/signup', {titles});
 });
 
 /* router.post('/signup', (req, res) => {

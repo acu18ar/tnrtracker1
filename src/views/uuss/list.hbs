@@ -2,7 +2,7 @@
 <table class="table" class="container p-8">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" id="pruebalog">#</th>
             <th scope="col">Codigo Unidad de Superficie</th>
             <th scope="col">Nombre Unidad de Superficie</th>
             <th scope="col">Descripcion</th>
@@ -10,7 +10,7 @@
         </tr>
      </thead>
      <tbody>
-        {{#each uuss}}
+        {{#each uuss_list}}
         <tr>
             <td>number</td>
             <td>{{this.code_uuss}}</td>
@@ -25,7 +25,9 @@
      </tbody>
 </table>
 </div>
-
+<script> 
+    console.log(document.getElementById('pruebalog').innerHTML);
+</script>
 {{!-- Para UNIDADES DE SUPERFICIE
 <div class="container p-8">
     <div class="row">

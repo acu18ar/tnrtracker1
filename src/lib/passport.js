@@ -40,7 +40,8 @@ passport.use('local.signup', new LocalStrategy({
     const { first_name } = req.body;
     const { last_name } = req.body;
     const { email } = req.body;
-    const { title } = req.body;
+    const { id_title } = req.body;
+    
     //console.log(req.body);
     const newUser = {
         username,
@@ -48,12 +49,25 @@ passport.use('local.signup', new LocalStrategy({
         first_name,
         last_name,
         email,
-        title
+
         //falta created ad, y falta api_token
     };
+
+
     newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('INSERT INTO users SET ?', [newUser]);
     newUser.id = result.insertId;
+    //console.log(id_title);
+    const {user_id_user}= newUser.id;
+    const {title_id_title}= id_title;
+    const tis = {
+        user_id_user: newUser.id,
+        title_id_title: id_title
+    }
+    console.log(tis);
+    const result2 = await pool.query('INSERT INTO title_user SET ?', [tis]);
+    //const result2 = await pool.query('INSERT INTO title_user SET user_id_user = '+ newUser.id + ',title_id_title' + id_title);
+
     //console.log(result);
     return done(null, newUser);
 }));

@@ -27,13 +27,18 @@
 
                     <div class="form-group">
                     <label for="sel1">Selecciona Cargo:</label>
-                    <select class="form-control" id="sel1" name="title"  aria-placeholder=" ">
-                        <option>Administrador</option>
+                    <select class="form-control" id="sel1" name="id_title"  aria-placeholder=" ">
+                        {{#each titles}}
+                        <option value="{{id_title}}">
+                            {{title}}
+                        </option>
+                        {{/each }}
+                       {{!-- <option>Administrador</option>
                         <option>Gerencia</option>
                         <option>Agente_Regional_Puerto_Villarroel</option>
                         <option>Agente_Regional_Trinidad</option>
                         <option>Agente_Regional_Guayaramerin</option>
-                        <option>Agente_Regional_Puerto_Quijarro</option>
+                        <option>Agente_Regional_Puerto_Quijarro</option>--}}
                     </select>
                     </div>
                     <div class="form-group">

@@ -32,7 +32,7 @@ router.post('/add', isLoggedIn, async(req, res) => {
      res.redirect('/links');
 
 });
-
+//para mostrar 
 router.get('/', isLoggedIn, async (req, res) => {
     const links = await pool.query('SELECT * FROM links WHERE user_id=?',[req.user.id]);
     console.log(links);
