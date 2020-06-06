@@ -1,31 +1,41 @@
 <div class="container p-8">
+    <tr> </tr>
+    <h2>ADMINISTRACION DE USUARIOS</h2>
 <table class="table" class="container p-8">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Codigo Tracker</th>
-            <th scope="col">Numero Celular Asignado</th>
-            <th scope="col">Observaciones</th>
+            <th scope="col" id="pruebalog">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">email</th>
+            <th scope="col">Nombre de Usuario</th>
+            <th scope="col">Fecha de creacion</th>
+            <th scope="col">Password</th>
             <th scope="col">Acciones</th>
         </tr>
      </thead>
      <tbody>
-        {{#each tracker_list}}
+        {{#each users}}
         <tr>
             <td>number</td>
-            <td>{{this.tracker_code}}</td>
-            <td>{{this.tracker_cell_number}}</td>
-            <td>{{this.tracker_obs}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.username}}</td>
+            <td>{{timeago create_time}}</td>
+            <td>{{this.password}}</td>
             <td>
-                <a href="/uuss/delete/{{id_traker}}" class="btn btn-danger">Delete</a>
-                <a href="/uuss/edit/{{id_tracker}}" class="btn btn-secondary">Edit</a>
+                <a href="/users/delete/{{id}}" class="btn btn-danger">Delete User.</a>
+                <a href="/users/edit/{{id}}" class="btn btn-secondary">Edit User</a>
             </td>
         </tr>
         {{/each}}
      </tbody>
 </table>
 </div>
-
+<script> 
+    console.log(document.getElementById('pruebalog').innerHTML);
+</script>
 {{!-- Para UNIDADES DE SUPERFICIE
 <div class="container p-8">
     <div class="row">

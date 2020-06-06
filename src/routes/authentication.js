@@ -23,7 +23,7 @@ router.get('/signup', isNotLoggedin, async (req,res) => {
     res.send('received');
 }); */
 
-
+//localstorage
 
 router.get('/signin', (req, res) => {
     res.render('auth/signin');

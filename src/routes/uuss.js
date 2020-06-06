@@ -27,7 +27,7 @@ router.post('/add', isLoggedIn, async(req, res) => {
     };
     //pool.query('INSERT INTO links set ?, [newLink]'); //una peticion comun abajo esta con promes
     const result = await pool.query('INSERT INTO uuss set ?', [newuuss]);
-    console.log(newuuss);
+    //console.log(newuuss);
     newuuss.id = result.insertId;
     const tis_uss = {
         title_id_title: id_title,
@@ -40,6 +40,12 @@ router.post('/add', isLoggedIn, async(req, res) => {
      res.redirect('/uuss');
 
 });
+
+
+
+
+
+
 
 router.get('/', isLoggedIn, async (req, res) => {
     const title_id_user1 = await pool.query('SELECT * FROM title_user WHERE user_id_user=?',[req.user.id]);
@@ -67,8 +73,15 @@ router.get('/', isLoggedIn, async (req, res) => {
 
 router.get('/delete/:id_uuss',isLoggedIn, async (req, res) => {
     //console.log(req.params.id_links); //para comprobar
+    console.log(req.params);
+    //elimina ambos de la tabla, parece solo un chiste... 
     const { id_uuss } = req.params;
+    await pool.query('DELETE FROM title_uuss WHERE id_title_uuss = ?', [id_uuss]);
+
     await pool.query('DELETE FROM uuss WHERE id_uuss = ?', [id_uuss]);
+
+
+
     req.flash('success', 'Removido ');
     res.redirect('/uuss');
     res.send('DELETED - REEEE');
@@ -95,6 +108,15 @@ router.post('/edit/:id_uuss', isLoggedIn, async(req, res) => {
     };
     console.log(newuuss);
     await pool.query( 'UPDATE uuss set ? WHERE id_uuss = ?', [newuuss, id_uuss]);
+    
+    //current_uuss.id = result.insertId;
+    /*const tis_cre = {
+        title_id_title: id_title,
+        crew_id_crew: current_uuss.id
+    }*/
+   // await pool.query('UPDATE title_uuss set ? WHERE id_title_uuss = ?',[tis_cre]);
+
+        
     req.flash('success', 'UUSS Actualizado...')
     res.redirect('/uuss');
 });

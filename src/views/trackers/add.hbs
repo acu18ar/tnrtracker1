@@ -3,16 +3,17 @@
         <div class="col-md-8 mx-auto">
             <div class="card-body">
                 <!-- Para saber donde enviara los datos -->
-                <form action="/uuss/add" method="POST">
+                <form action="/trackers/add" method="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="code_uuss" placeholder="Codigo Unidad de Superfice" autofocus>
+                        <input type="text" class="form-control" name="tracker_code" placeholder="Codigo Tracker" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="text" name = "name_uuss" class="form-control" placeholder="Nombre de la Unidad de Superficie, si esxiste">
+                        <input type="text" name = "tracker_cell_number" class="form-control" placeholder="Numero Celular del Tracker">
                     </div>
                     <div class="form-group">
-                        <textarea name="description" rows="2" class="form-control" placeholder="Descripcion"></textarea>
+                        <textarea name="tracker_obs" rows="2" class="form-control" placeholder="Observaciones"></textarea>
                     </div>
+                    
                     <div class="form-group">
                         <button class="btn btn-success btn-block">GUARDAR</button>
                     </div>

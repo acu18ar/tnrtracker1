@@ -1,0 +1,38 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card-body">
+                <!-- Para saber donde enviara los datos -->
+                <form action="/uuss/edit/{{crew.id_crew}}" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="comandante" placeholder="Grado y Nombre Completo del Comandante" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="segundocomandante" placeholder="Grado y Nombre Completo del Segundo Comandante" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="jefemaquinas" placeholder="Grado y Nombre Completo del Jefe de Maquinas" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="maquinista" placeholder="Grado y Nombre Completo del Maquinista" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="timonel" placeholder="Grado y Nombre Completo del Primer Timonel" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="segtimonel" placeholder="Grado y Nombre Completo del Segundo Timonel" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="crew" placeholder="Grado y Nombre Completo de Personal extra" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="crew2" placeholder="Grado y Nombre Completo del Personal extra" >
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

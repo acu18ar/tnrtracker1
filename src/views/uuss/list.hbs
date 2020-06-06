@@ -1,4 +1,6 @@
 <div class="container p-8">
+    <tr> </tr>
+    <h2>ADMINISTRACION DE UNIDADES DE SUPERFICE</h2>
 <table class="table" class="container p-8">
     <thead class="thead-dark">
         <tr>
@@ -6,6 +8,7 @@
             <th scope="col">Codigo Unidad de Superficie</th>
             <th scope="col">Nombre Unidad de Superficie</th>
             <th scope="col">Descripcion</th>
+            <th scope="col">Tripulacion</th>
             <th scope="col">Acciones</th>
         </tr>
      </thead>
@@ -16,6 +19,9 @@
             <td>{{this.code_uuss}}</td>
             <td>{{this.name_uuss}}</td>
             <td>{{this.description}}</td>
+            <td>
+                <a href="www.google.com" target="_blank" >Comandante:ddfdsfsdfas </a>
+            </td>
             <td>
                 <a href="/uuss/delete/{{id_uuss}}" class="btn btn-danger">Delete U.S.</a>
                 <a href="/uuss/edit/{{id_uuss}}" class="btn btn-secondary">Edit U.S.</a>

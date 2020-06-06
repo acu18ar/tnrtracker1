@@ -66,9 +66,11 @@ app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/links', require('./routes/links'));
 app.use('/uuss', require('./routes/uuss'));
-/*app.use('/title', require('./routes/title'));
+app.use('/crew', require('./routes/crew'));
 app.use('/trackers', require('./routes/trackers'));
-app.use('/crew', require('./routes/crew'));*/
+app.use('/users', require('./routes/users'));
+/*app.use('/title', require('./routes/title'));
+*/
 
 //publics
 app.use(express.static(path.join(__dirname, 'public')));

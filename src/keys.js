@@ -4,6 +4,6 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'tnrtrackerdb3'
+        database: 'tnrtrackerdb4'
     }
 };

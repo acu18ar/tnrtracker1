@@ -1,31 +1,44 @@
 <div class="container p-8">
+    <h2>ADMINISTRACION DE TRIPULACIONES</h2>
 <table class="table" class="container p-8">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Codigo Tracker</th>
-            <th scope="col">Numero Celular Asignado</th>
-            <th scope="col">Observaciones</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Comandante</th>
+            <th scope="col">2° Comandante</th>
+            <th scope="col">Jefe de Maquinas</th>
+            <th scope="col">Maquinista</th>
+            <th scope="col">Timonel</th>
+            <th scope="col">2° Timonel</th>
+            <th scope="col"> Tripulacion</th>
+            <th scope="col"> Tripulacion</th>
+            <th scope="col"> Acciones</th>
         </tr>
      </thead>
      <tbody>
-        {{#each tracker_list}}
+        {{#each crew_list}}
         <tr>
             <td>number</td>
-            <td>{{this.tracker_code}}</td>
-            <td>{{this.tracker_cell_number}}</td>
-            <td>{{this.tracker_obs}}</td>
+            <td>{{this.comandante}}</td>
+            <td>{{this.segundocomandante}}</td>
+            <td>{{this.jefemaquinas}}</td>
+            <td>{{this.maquinista}}</td>
+            <td>{{this.timonel}}</td>
+            <td>{{this.segtimonel}}</td>
+            <td>{{this.crew}}</td>
+            <td>{{this.crew2}}</td>
             <td>
-                <a href="/uuss/delete/{{id_traker}}" class="btn btn-danger">Delete</a>
-                <a href="/uuss/edit/{{id_tracker}}" class="btn btn-secondary">Edit</a>
+                <a href="/crew/delete/{{id_crew}}" class="btn btn-danger">Delete U.S.</a>
+                <a href="/crew/edit/{{id_crew}}" class="btn btn-secondary">Edit U.S.</a>
             </td>
         </tr>
         {{/each}}
      </tbody>
 </table>
 </div>
-
+<script> 
+    console.log(document.getElementById('pruebalog').innerHTML);
+</script>
 {{!-- Para UNIDADES DE SUPERFICIE
 <div class="container p-8">
     <div class="row">
