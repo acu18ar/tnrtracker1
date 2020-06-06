@@ -35,7 +35,7 @@ ALTER TABLE links
 ALTER TABLE links
     MODIFY id_links INT(11) NOT NULL AUTO_INCREMENT;
 
-CREATE TABLE uuss(
+CREATE TABLE buques(
     id_uuss INT(45) NOT NULL,
     code_uuss VARCHAR(45) NOT NULL,
     name_uuss VARCHAR(45) NOT NULL,
@@ -43,8 +43,8 @@ CREATE TABLE uuss(
     user_id INT(11),
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id)
 );
-ALTER TABLE uuss
+ALTER TABLE buques
     ADD PRIMARY KEY (id_uuss);
 
-ALTER TABLE uuss
+ALTER TABLE buques
     MODIFY id_uuss INT(45) NOT NULL AUTO_INCREMENT;

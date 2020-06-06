@@ -7,6 +7,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySqlStore = require('express-mysql-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
+
 
 const{ database } = require('./keys');
 
@@ -16,11 +18,13 @@ const app = express();
 require('./lib/passport');
 
 //configurar
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', process.env.PORT || 4000);
-app.set('views', path.join(__dirname, 'views'))
+//app.set('views', path.join(__dirname, 'views'))
 // ///HANDELSBARS
-app.engine('.hbs', exphbs({
+/*app.engine('.hbs', exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
@@ -28,9 +32,9 @@ app.engine('.hbs', exphbs({
     extname: '.hbs',
     helpers: require('./lib/handlebars')
 
-}));
+}));*/
 
-app.set('view engine', '.hbs');
+//app.set('view engine', '.hbs');
 //middlewares -> funciones eecudadas para una peticin al server
 
 app.use(session({
@@ -39,11 +43,12 @@ app.use(session({
     saveUninitialized: false,
     store: new MySqlStore(database)
 }));
+
 app.use(flash());
 app.use(morgan('dev')); 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-        //para que passport funcione
+//para que passport funcione
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -52,31 +57,29 @@ app.use(passport.session());
 
 //variables GLOBALES para ver en cualquier vista
 app.use(((req, res, next)=>{
-    app.locals.success = req.flash('success');
-    app.locals.message = req.flash('message');
+    //app.locals.success = req.flash('success');
+    //app.locals.message = req.flash('message');
     app.locals.user = req.user;
    // app.locals.title = req.title;//para el cargo
-    app.locals.uuss = req.uuss;//para uuss
-    app.locals.tracker = req.tracker;//para rastreador
+    //app.locals.buques = req.buques;//para buques
+    //app.locals.tracker = req.tracker;//para rastreador
     next();
 }));
 
 // ROutes
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
-app.use('/links', require('./routes/links'));
-app.use('/uuss', require('./routes/uuss'));
-app.use('/crew', require('./routes/crew'));
-app.use('/trackers', require('./routes/trackers'));
+//app.use('/links', require('./routes/links'));
+//app.use('/buques', require('./routes/buques'));
+// app.use('/crew', require('./routes/crew'));
+// app.use('/trackers', require('./routes/trackers'));
 app.use('/users', require('./routes/users'));
 /*app.use('/title', require('./routes/title'));
 */
 
 //publics
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 //starting server
-
-
 
 app.listen(app.get('port'),()=>{
     console.log('Server on port', app.get('port'))

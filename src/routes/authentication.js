@@ -30,18 +30,22 @@ router.get('/signin', (req, res) => {
 });
 
 router.post('/signin', (req, res, next) => {
-    passport.authenticate('local.signin',{
-        successRedirect:'/profile',
-        failureRedirect: '/signin',
-        failureFash: true
+    passport.authenticate('local.signin',function(error, user){
+        if(error){
+            res.status(401).send(error);    
+        }
+        res.status(200).send(user); //200 exitoso
+        // successRedirect:'/profile',
+        // failureRedirect: '/signin',
+        // failureFash: true
     })(req, res, next);
 });
 
 
 router.post('/signup', passport.authenticate('local.signup',{
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFash: true
+    // successRedirect: '/profile',
+    // failureRedirect: '/signup',
+    // failureFash: true
 }));
 
 

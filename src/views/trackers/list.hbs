@@ -17,8 +17,8 @@
             <td>{{this.tracker_cell_number}}</td>
             <td>{{this.tracker_obs}}</td>
             <td>
-                <a href="/uuss/delete/{{id_traker}}" class="btn btn-danger">Delete</a>
-                <a href="/uuss/edit/{{id_tracker}}" class="btn btn-secondary">Edit</a>
+                <a href="/buques/delete/{{id_traker}}" class="btn btn-danger">Delete</a>
+                <a href="/buques/edit/{{id_tracker}}" class="btn btn-secondary">Edit</a>
             </td>
         </tr>
         {{/each}}
@@ -29,7 +29,7 @@
 {{!-- Para UNIDADES DE SUPERFICIE
 <div class="container p-8">
     <div class="row">
-        {{#each uuss}}
+        {{#each buques}}
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
@@ -44,8 +44,8 @@
                             </h3>
                         </a>
                         <p class = "m-2">{{description}}</p>
-                        <a href="/uuss/delete/{{id_uuss}}" class="btn btn-danger">Delete U.S.</a>
-                        <a href="/uuss/edit/{{id_uuss}}" class="btn btn-secondary">Edit U.S.</a>
+                        <a href="/buques/delete/{{id_uuss}}" class="btn btn-danger">Delete U.S.</a>
+                        <a href="/buques/edit/{{id_uuss}}" class="btn btn-secondary">Edit U.S.</a>
                     </div>
                 </div>
             </div>

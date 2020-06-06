@@ -311,10 +311,10 @@ CREATE TABLE `usuario` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `uuss`
+-- Estructura de tabla para la tabla `buques`
 --
 
-CREATE TABLE `uuss` (
+CREATE TABLE `buques` (
   `id_uuss` int(45) NOT NULL,
   `code_uuss` varchar(45) DEFAULT NULL,
   `name_uuss` varchar(45) DEFAULT NULL,
@@ -449,9 +449,9 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idusuario`);
 
 --
--- Indices de la tabla `uuss`
+-- Indices de la tabla `buques`
 --
-ALTER TABLE `uuss`
+ALTER TABLE `buques`
   ADD PRIMARY KEY (`id_uuss`);
 
 --
@@ -531,9 +531,9 @@ ALTER TABLE `users`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `uuss`
+-- AUTO_INCREMENT de la tabla `buques`
 --
-ALTER TABLE `uuss`
+ALTER TABLE `buques`
   MODIFY `id_uuss` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -557,7 +557,7 @@ ALTER TABLE `cargo`
 -- Filtros para la tabla `crew`
 --
 ALTER TABLE `crew`
-  ADD CONSTRAINT `fk_crew_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `uuss` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_crew_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `buques` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `crew_has_title`
@@ -596,13 +596,13 @@ ALTER TABLE `title_user`
 --
 ALTER TABLE `title_uuss`
   ADD CONSTRAINT `fk_title_uuss_title1` FOREIGN KEY (`title_id_title`) REFERENCES `title` (`id_title`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_title_uuss_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `uuss` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_title_uuss_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `buques` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tracker`
 --
 ALTER TABLE `tracker`
-  ADD CONSTRAINT `fk_tracker_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `uuss` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tracker_uuss1` FOREIGN KEY (`uuss_id_uuss`) REFERENCES `buques` (`id_uuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

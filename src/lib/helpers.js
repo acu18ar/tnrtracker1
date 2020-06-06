@@ -3,8 +3,6 @@ const bcrypt = require('bcryptjs');
 
 const helpers ={};
 
-
-
 // para el cifrado
 helpers.encryptPassword = async(password) => {
     const salt = await bcrypt.genSalt(10);

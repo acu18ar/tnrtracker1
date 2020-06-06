@@ -95,7 +95,7 @@ router.post('/edit/:id_crew', isLoggedIn, async(req, res) => {
 router.get('/tracker1', (req, res) => {
     //res.send('Form');
     //res.render('/links/add');
-    res.render('uuss/tracker1');
+    res.render('buques/tracker1');
 
 });
 router.post('/tracker1', (req, res) => {

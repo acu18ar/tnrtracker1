@@ -11,7 +11,7 @@ const {isLoggedIn} = require('../lib/auth');
 router.get('/add', isLoggedIn, async(req, res) => {
 
     const titles = await pool.query('SELECT * FROM title'); //WHERE user_id=?',[req.user.id]
-    res.render('uuss/add', {titles});
+    res.render('buques/add', {titles});
 
 });
 
@@ -26,7 +26,7 @@ router.post('/add', isLoggedIn, async(req, res) => {
 //        user_id: req.user.id
     };
     //pool.query('INSERT INTO links set ?, [newLink]'); //una peticion comun abajo esta con promes
-    const result = await pool.query('INSERT INTO uuss set ?', [newuuss]);
+    const result = await pool.query('INSERT INTO buques set ?', [newuuss]);
     //console.log(newuuss);
     newuuss.id = result.insertId;
     const tis_uss = {
@@ -37,7 +37,7 @@ router.post('/add', isLoggedIn, async(req, res) => {
     //res.send('RECIBIDO');
     //para que exista un mensaje guardado de buena forma
     req.flash('success', 'Unidad de Superficie guardado satisfactoriamente');
-     res.redirect('/uuss');
+     res.redirect('/buques');
 
 });
 
@@ -56,19 +56,19 @@ router.get('/', isLoggedIn, async (req, res) => {
     title_uuss2.forEach(element => {
         id_permited.push(element.uuss_id_uuss);
     });
-    const uuss = await pool.query('SELECT * FROM uuss');
+    const buques = await pool.query('SELECT * FROM buques');
     const uuss_list = [];
-    uuss.forEach(element => {
+    buques.forEach(element => {
         if(id_permited.includes(element.id_uuss)){
             uuss_list.push(element);
         }
     });
     
-    console.log(uuss);
+    console.log(buques);
     //res.send('las listas estan aqui');
-    //res.render('uuss/list', {uuss});
+    //res.render('buques/list', {buques});
     console.log(id_permited);
-    res.render('uuss/list', {uuss_list});
+    res.render('buques/list', {uuss_list});
 });
 
 router.get('/delete/:id_uuss',isLoggedIn, async (req, res) => {
@@ -78,12 +78,12 @@ router.get('/delete/:id_uuss',isLoggedIn, async (req, res) => {
     const { id_uuss } = req.params;
     await pool.query('DELETE FROM title_uuss WHERE id_title_uuss = ?', [id_uuss]);
 
-    await pool.query('DELETE FROM uuss WHERE id_uuss = ?', [id_uuss]);
+    await pool.query('DELETE FROM buques WHERE id_uuss = ?', [id_uuss]);
 
 
 
     req.flash('success', 'Removido ');
-    res.redirect('/uuss');
+    res.redirect('/buques');
     res.send('DELETED - REEEE');
 });
 
@@ -92,10 +92,10 @@ router.get('/edit/:id_uuss', isLoggedIn, async (req, res) => {
     //console.log(id_links);
     //res.send('Recividisiomo para EDIT');
     //para poblar la lista
-    const uuss =  await pool.query('SELECT * FROM uuss WHERE id_uuss = ?', [id_uuss]);
+    const buques =  await pool.query('SELECT * FROM buques WHERE id_uuss = ?', [id_uuss]);
     //console.log(links[0]);
     //1:44:30
-    res.render('uuss/edit', {uuss: uuss[0]});
+    res.render('buques/edit', {buques: buques[0]});
 });
 
 router.post('/edit/:id_uuss', isLoggedIn, async(req, res) => {
@@ -107,7 +107,7 @@ router.post('/edit/:id_uuss', isLoggedIn, async(req, res) => {
         description
     };
     console.log(newuuss);
-    await pool.query( 'UPDATE uuss set ? WHERE id_uuss = ?', [newuuss, id_uuss]);
+    await pool.query( 'UPDATE buques set ? WHERE id_uuss = ?', [newuuss, id_uuss]);
     
     //current_uuss.id = result.insertId;
     /*const tis_cre = {
@@ -118,7 +118,7 @@ router.post('/edit/:id_uuss', isLoggedIn, async(req, res) => {
 
         
     req.flash('success', 'UUSS Actualizado...')
-    res.redirect('/uuss');
+    res.redirect('/buques');
 });
 
 
@@ -127,7 +127,7 @@ router.post('/edit/:id_uuss', isLoggedIn, async(req, res) => {
 router.get('/tracker1', (req, res) => {
     //res.send('Form');
     //res.render('/links/add');
-    res.render('uuss/tracker1');
+    res.render('buques/tracker1');
 
 });
 router.post('/tracker1', (req, res) => {

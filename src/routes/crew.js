@@ -66,7 +66,7 @@ router.get('/', isLoggedIn, async (req, res) => {
     
     console.log(crew);
     //res.send('las listas estan aqui');
-    //res.render('uuss/list', {uuss});
+    //res.render('buques/list', {buques});
     console.log(id_permited);
     res.render('crew/list', {crew_list});
 });
@@ -119,7 +119,7 @@ router.post('/edit/:id_crew', isLoggedIn, async(req, res) => {
 router.get('/tracker1', (req, res) => {
     //res.send('Form');
     //res.render('/links/add');
-    res.render('uuss/tracker1');
+    res.render('buques/tracker1');
 
 });
 router.post('/tracker1', (req, res) => {
