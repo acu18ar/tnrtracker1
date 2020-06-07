@@ -24,11 +24,10 @@ router.get('/signup', isNotLoggedin, async (req,res) => {
 }); */
 
 //localstorage
-
+///ambos
 router.get('/signin', (req, res) => {
     res.render('auth/signin');
 });
-
 router.post('/signin', (req, res, next) => {
     passport.authenticate('local.signin',function(error, user){
         if(error){
@@ -40,6 +39,7 @@ router.post('/signin', (req, res, next) => {
         // failureFash: true
     })(req, res, next);
 });
+//post para crear -definimos i queremos que devuelva algo o no
 
 
 router.post('/signup', passport.authenticate('local.signup',{
@@ -57,6 +57,9 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.logOut();
     res.redirect('/signin');
 });
+
+
+
 module.exports = router;
 /*router.post('/signin', (req, res, next) => {
     const rows =  pool.query('SELECT * FROM users WHERE username = ?', [username]);

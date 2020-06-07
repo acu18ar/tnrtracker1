@@ -6,6 +6,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('../lib/helpers');
 
+
+
 //PARA SIGN IN
 passport.use('local.signin', new LocalStrategy({
   //  usernameField: 'username',
@@ -47,7 +49,7 @@ passport.use('local.signup', new LocalStrategy({
         username,
         password,
         email,
-        roles_id_rol: roleid
+        roles_id_roles: roleid
 
         //falta created ad, y falta api_token
     };
@@ -71,6 +73,9 @@ passport.use('local.signup', new LocalStrategy({
     //console.log(result);
     return done(null, newUser);
 }));
+
+///////////////////////////para iniciar secion con solo usuario//////////////////////
+
 
 //para dar lugar al ususario registrado
 passport.serializeUser((user, done)=>{
